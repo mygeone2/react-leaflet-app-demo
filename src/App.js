@@ -5,7 +5,7 @@ import { Icon } from "leaflet";
 import * as parkData from "./data/skateboard-parks.json";
 import { LeafletTrackingMarker } from "react-leaflet-tracking-marker";
 import L from "leaflet";
-import iconPng from './icon.png'
+import iconPng from './icon3.png'
 
 
 function MyComponent() {
@@ -14,7 +14,7 @@ function MyComponent() {
     
   const icon = L.icon({
     iconSize: [45, 45],
-    popupAnchor: [2, -50],
+    popupAnchor: [0, 0],
     iconUrl: iconPng
   });
 
@@ -24,13 +24,13 @@ function MyComponent() {
   
   useEffect(() => {
     const interval = setInterval(() => {
-          fetch('http://35.239.54.234:8081/')
+          fetch('https://35.239.54.234:8081/')
           .then(res => res.json())
           .then( response => {
             const coordiantes = response[0];
 
             if (oldCenter[1] !== coordiantes.latitude && oldCenter[0] !== coordiantes.latitude){
-              setCenter([parseFloat(coordiantes.latitude)+Math.floor(Math.random() * 300)/100000.0, parseFloat(coordiantes.longitude) ])
+              setCenter([parseFloat(coordiantes.latitude)+Math.floor(Math.random() * 300)/100000.0, parseFloat(coordiantes.longitude)+Math.floor(Math.random() * 300)/100000.0 ])
             }
                 // map.setView([parseFloat(coordiantes.latitude),parseFloat(coordiantes.longitude)]);
                 // setCenter([parseFloat(coordiantes.latitude),parseFloat(coordiantes.longitude)]);
@@ -43,7 +43,7 @@ function MyComponent() {
 
   return (
     <LeafletTrackingMarker 
-      //icon={icon} 
+      icon={icon} 
       position={center} 
       previousPosition={oldCenter} 
       duration={5000} 
@@ -56,7 +56,7 @@ function MyComponent() {
 function App() {
 
   return (
-    <MapContainer center={[50.5, 30.5]} zoom={20} scrollWheelZoom={false}>
+    <MapContainer center={[-33.44928297205901, -70.63791138372618]} zoom={20} scrollWheelZoom={false}>
       <MyComponent/>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
