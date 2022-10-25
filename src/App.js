@@ -10,8 +10,6 @@ import iconPng from './icon3.png'
 
 function MyComponent() {
 
-
-    
   const icon = L.icon({
     iconSize: [45, 45],
     popupAnchor: [0, 0],
@@ -30,7 +28,7 @@ function MyComponent() {
             const coordiantes = response[0];
 
             if (oldCenter[1] !== coordiantes.latitude && oldCenter[0] !== coordiantes.latitude){
-              setCenter([parseFloat(coordiantes.latitude)+Math.floor(Math.random() * 300)/100000.0, parseFloat(coordiantes.longitude)+Math.floor(Math.random() * 300)/100000.0 ])
+              setCenter([parseFloat(coordiantes.latitude)+0.00219, parseFloat(coordiantes.longitude)+0.00219 ])
             }
                 // map.setView([parseFloat(coordiantes.latitude),parseFloat(coordiantes.longitude)]);
                 // setCenter([parseFloat(coordiantes.latitude),parseFloat(coordiantes.longitude)]);
